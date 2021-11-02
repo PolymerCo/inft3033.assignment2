@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7242353272E8B8700F93F24 /* images.png in Resources */ = {isa = PBXBuildFile; fileRef = A7242352272E8B8700F93F24 /* images.png */; };
 		A7CD64C8272975450088DDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD64C7272975450088DDE2 /* AppDelegate.swift */; };
 		A7CD64CA272975450088DDE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD64C9272975450088DDE2 /* ViewController.swift */; };
 		A7CD64CD272975450088DDE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7CD64CB272975450088DDE2 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A7242352272E8B8700F93F24 /* images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images.png; sourceTree = "<group>"; };
 		A7CD64C4272975450088DDE2 /* inft3033.assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inft3033.assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CD64C7272975450088DDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7CD64C9272975450088DDE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7242351272E8B7A00F93F24 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7242352272E8B8700F93F24 /* images.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A7CD64BB272975450088DDE2 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		A7CD64C6272975450088DDE2 /* inft3033.assignment2 */ = {
 			isa = PBXGroup;
 			children = (
+				A7242351272E8B7A00F93F24 /* Resources */,
 				A7CD64C7272975450088DDE2 /* AppDelegate.swift */,
 				A7CD64C9272975450088DDE2 /* ViewController.swift */,
 				A7CD64CB272975450088DDE2 /* Main.storyboard */,
@@ -129,6 +140,7 @@
 				A7CD64D5272975450088DDE2 /* LaunchScreen.storyboard in Resources */,
 				A7CD64D2272975450088DDE2 /* Assets.xcassets in Resources */,
 				A7CD64CD272975450088DDE2 /* Main.storyboard in Resources */,
+				A7242353272E8B8700F93F24 /* images.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
