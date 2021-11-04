@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
-
+    
+    var modelContainer: NSPersistentContainer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        guard modelContainer != nil else {
+            fatalError("Base ViewController requires a persistent container.")
+        }
     }
 
     override func didReceiveMemoryWarning() {
