@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TeamIdTextFieldDelegate.textField(_:shouldChangeCharactersIn:replacementString:):TeamIdTextFieldDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
