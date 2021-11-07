@@ -7,6 +7,12 @@
 //
 
 class Constants {
+    
+    /**
+     URL of the API
+     */
+    public static var apiUrl = "https://www.partiklezoo.com/freightfrenzy/?"
+    
     /**
      Unit of measure for points
      */

@@ -15,14 +15,14 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet var teamIdField: UITextField!
     @IBOutlet var teamNameField: UITextField!
     @IBOutlet var teamLocationField: UITextField!
-
-    @IBOutlet var homeScreen: UIViewController!
+    @IBOutlet var formView: UIView!
+    @IBOutlet var progress: UIProgressView!
     
     var teamIdDelegate: TeamIdTextFieldDelegate
     var teamNameDelegate: TextFieldDelegate
     var teamLocationDelegate: TextFieldDelegate
-    
     var imagePicker = UIImagePickerController()
+    var imageData: Data?
     
     required init?(coder: NSCoder) {
         // Create delegates for use in the fields
@@ -71,10 +71,63 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
         let (isValid, reason) = validateInputs()
         
         if isValid {
-            self.dismiss(animated: true)
+            progress.isHidden = false
+            progress.progress = 0
+            progress.setProgress(0.6, animated: true)
+            self.formView.isUserInteractionEnabled = false;
+            
+            // Check if the team already exists on the server
+            GetTeamRequest.teamExists(withId: self.teamIdField.text!, callback: { result in
+                DispatchQueue.main.async {
+                    self.progress.setProgress(0.8, animated: true)
+                    switch result {
+                    case .success(let exists):
+                        if exists {
+                            self.showDialog(withTitle: "Error Saving Team", andMessage: "A team with the ID \(self.teamIdField.text!) already exists.")
+                        } else {
+                            // Now check if the team already exists in coredata
+                            
+                            do {
+                                self.progress.setProgress(0.9, animated: true)
+                                let teams = try DataUtils.fetchObject(for: "Team")
+                                let teamId = Int32(self.teamIdField.text!)
+                                var hasMatch = false
+                                
+                                for team in teams {
+                                    if (team.value(forKeyPath: "teamId") as? Int32 == teamId) {
+                                        hasMatch = true
+                                        break
+                                    }
+                                }
+                                
+                                self.progress.setProgress(1, animated: true)
+                                
+                                if hasMatch {
+                                    self.showDialog(withTitle: "Error Saving Team", andMessage: "A team with the ID \(self.teamIdField.text!) already exists.")
+                                } else {
+                                    self.storeTeamData()
+                                    self.dismiss(animated: true)
+                                }
+                            } catch {
+                                self.showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again later.")
+                            }
+                        }
+                        
+                        self.progress.progress = 0
+                        self.progress.isHidden = true
+                        self.formView.isUserInteractionEnabled = true;
+                    case .failure(let error):
+                        self.showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again later.\n\(error)")
+                        
+                        self.progress.progress = 0
+                        self.progress.isHidden = true
+                        self.formView.isUserInteractionEnabled = true;
+                    }
+                }
+            })
+        } else {
+            showInvalidInputAlert(text: reason)
         }
-        
-        showInvalidInputAlert(text: reason)
     }
     
     /**
@@ -108,6 +161,9 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
         let image = info["UIImagePickerControllerOriginalImage"] as? UIImage
         teamImage.image = image
         
+        // Set the image data as PNG rep for use in CoreData
+        imageData = UIImagePNGRepresentation(image!)
+        
         // Dismiss
         dismiss(animated: true)
     }
@@ -127,8 +183,13 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
      */
     private func validateInputs() -> (Bool, String) {
         // check if team ID is valid length
-        if teamIdField.text?.count != TeamIdTextFieldDelegate.MaxLength {
+        if teamIdField.text!.count != TeamIdTextFieldDelegate.MaxLength {
             return (false, "The Team ID needs to be 5 numbers in length")
+        }
+        
+        // Test to see if the team ID can be converted to an int
+        guard Int32(teamIdField.text!) != nil else {
+            return (false, "The Team ID entered is invalid")
         }
         
         // check if team name entered
@@ -145,11 +206,36 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
     }
     
     private func storeTeamData() {
+        let entity = DataUtils.newObject(for: "Team")
         
+        entity.setValue(teamNameField.text, forKey: "name")
+        entity.setValue(Int32(teamIdField.text!), forKey: "teamId")
+        entity.setValue(teamLocationField.text, forKey: "location")
+        entity.setValue(imageData, forKey: "image")
+        entity.setValue(Date(), forKey: "created")
+        
+        do {
+            try DataUtils.getManagedObject().save()
+        } catch let error as NSError {
+            showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again.\n\(error)")
+        }
     }
     
+    /**
+     Shows an invalid input alert to the user
+     - Parameter message: Message to show the user
+     */
     private func showInvalidInputAlert(text message: String) {
-        let alertController = UIAlertController(title: "Invalid Input", message: message, preferredStyle: .alert)
+        showDialog(withTitle: "Invalid Input", andMessage: message)
+    }
+    
+    /**
+     Shows a dialog alert to the user
+     - Parameter title: Title of the dialog
+     - Parameter message: Message within the dialog
+     */
+    private func showDialog(withTitle title: String, andMessage message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         
         alertController.addAction(action)

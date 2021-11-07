@@ -11,11 +11,11 @@ import CoreData
 
 class ViewController: UIViewController {
     
-    var modelContainer: NSPersistentContainer!
+    static var modelContainer: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard modelContainer != nil else {
+        guard ViewController.modelContainer != nil else {
             fatalError("Base ViewController requires a persistent container.")
         }
     }

@@ -3,12 +3,32 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in closure #1 in CreateTeamViewController.onSubmit():CreateTeamViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "team.value(forKeyPath: &quot;teamId&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static GetTeamRequest.getTeam(withId:callback:):GetTeam.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static GetTeamRequest.getTeam(withId:callback:):GetTeam.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static GetTeamRequest.teamExists(withId:callback:):GetTeam.swift">
+      </ContextState>
+      <ContextState
          contextName = "TeamIdTextFieldDelegate.textField(_:shouldChangeCharactersIn:replacementString:):TeamIdTextFieldDelegate.swift">
          <PersistentStrings>
             <PersistentString
                value = "text">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CreateTeamViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):CreateTeamViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
