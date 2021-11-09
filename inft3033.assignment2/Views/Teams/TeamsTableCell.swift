@@ -15,11 +15,7 @@ class TeamsTableCell: UITableViewCell {
     /**
      Team ID of this cell
      */
-    public var teamId: String?
-    
-    @IBAction func cellAction() {
-        
-    }
+    public var teamId: Int32?
     
     /**
      Sets the team name
@@ -33,7 +29,7 @@ class TeamsTableCell: UITableViewCell {
      Sets the team score. Set to 0 for no score set
      - Parameter to: New score
      */
-    public func setTeamScore(to score: Int) {
+    public func setTeamScore(to score: Int32) {
         teamScoreLabel?.text = score == 0 ? Constants.NoPointsPlaceholder : "\(String(score)) \(Constants.PointsUnit)"
     }
 }

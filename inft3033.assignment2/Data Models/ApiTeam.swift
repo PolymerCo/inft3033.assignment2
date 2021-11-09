@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- Model for a Get Team request
+ Model for a team recieved via API request
  */
-class GetTeamModel: Codable {
+struct ApiTeamModel: Codable {
     /**
      ID of the team
      */
@@ -48,14 +48,54 @@ class GetTeamModel: Codable {
     let message: String?
 }
 
-class GetTeamRequest {
+/**
+ Utility methods for recieving ApiTeamModels via the API server
+ */
+class ApiTeamRequest {
+    
+    public static func uploadTeam(withId id: Int32, withName name: String, withLocation location: String, callback: @escaping (Result<Bool, Error>) -> Void) {
+        // Check if already exists on API server
+        ApiTeamRequest.teamExists(withId: id, callback: { (request) -> Void in
+            switch (request) {
+            case .success(let exists):
+                var url: URL
+                
+                let id: String = "\(id)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+                let name: String = "\(name)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+                let location: String = "\(location)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+                
+                if exists {
+                    url = URL(string: "\(Constants.apiUrl)action=addteam&id=\(id)&name=\(name)&location=\(location)")!
+                } else {
+                    url = URL(string: "\(Constants.apiUrl)action=updateteam&id=\(id)&name=\(name)&location=\(location)")!
+                }
+                
+                // Create a new URL session
+                let session = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
+                    // If error has occured, run failure callback
+                    if let error = error {
+                        callback(.failure(error))
+                    }
+                    
+                    // Else, run success callback
+                    if data != nil {
+                        callback(.success(true))
+                    }
+                }
+                
+                session.resume()
+            case .failure(let error):
+                callback(.failure(error))
+            }
+        })
+    }
     
     /**
      Checks if a team exists on the API server
      - Parameter withID: ID to check
      - Parameter callback: The callback method to call when the request completed
      */
-    public static func teamExists(withId id: String, callback: @escaping (Result<Bool, Error>) -> Void) -> Void {
+    public static func teamExists(withId id: Int32, callback: @escaping (Result<Bool, Error>) -> Void) -> Void {
         // Run get team request
         getTeam(withId: id, callback: { result -> Void in
             switch result {
@@ -75,7 +115,8 @@ class GetTeamRequest {
      - Parameter withID: ID to get
      - Parameter callback: The callback method to call when the request completed
      */
-    public static func getTeam(withId id: String, callback: @escaping (Result<GetTeamModel, Error>) -> Void) -> Void {
+    public static func getTeam(withId id: Int32, callback: @escaping (Result<ApiTeamModel, Error>) -> Void) -> Void {
+        let id: String = "\(id)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         let url = URL(string: "\(Constants.apiUrl)action=team&id=\(id)")!
         
         // Create a new URL session
@@ -89,7 +130,7 @@ class GetTeamRequest {
             if let data = data {
                 do {
                     // Decode json object first
-                    let json = try JSONDecoder().decode(GetTeamModel.self, from: data)
+                    let json = try JSONDecoder().decode(ApiTeamModel.self, from: data)
                     callback(.success(json))
                 } catch { }
             }
@@ -103,7 +144,7 @@ class GetTeamRequest {
      Gets teams from the API server
      - Parameter callback: The callback method to call when the request completed
      */
-    public static func getTeams(callback: @escaping (Result<[GetTeamModel], Error>) -> Void) -> Void {
+    public static func getTeams(callback: @escaping (Result<[ApiTeamModel], Error>) -> Void) -> Void {
         let url = URL(string: "\(Constants.apiUrl)action=teams")!
         
         // Create a new URL session
@@ -117,9 +158,11 @@ class GetTeamRequest {
             if let data = data {
                 do {
                     // Decode json object first
-                    let json = try JSONDecoder().decode([GetTeamModel].self, from: data)
+                    let json = try JSONDecoder().decode([ApiTeamModel].self, from: data)
                     callback(.success(json))
-                } catch { }
+                } catch {
+                    callback(.failure(error))
+                }
             }
         }
         

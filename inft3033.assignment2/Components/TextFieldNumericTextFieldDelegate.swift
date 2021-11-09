@@ -1,36 +1,33 @@
 //
-//  DigitTextField.swift
+//  TextFieldNumericTextFieldDelegate.swift
 //  inft3033.assignment2
 //
-//  Created by Mitchell, Oliver - mitoj001 on 6/11/21.
+//  Created by Mitchell, Oliver - mitoj001 on 9/11/21.
 //  Copyright © 2021 Oliver Mitchell. All rights reserved.
 //
 
 import UIKit
 
 /**
- Text field delegate specifically for the TeamID field
+ Text field delegate for general use
  */
-class TeamIdTextFieldDelegate: NSObject, UITextFieldDelegate {
-    /**
-     Max possible value for the team ID text field
-     */
-    static var MaxValue = 99999
+class TextFieldNumericTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     /**
-     Minimum possible value for the team ID text field
+     Max length allowed for the text field
      */
-    static var MinValue = 10000
+    private var maxValue: Int
     
     /**
-     Max possible length for the text field
+     Create a new text field delegate
+     - Parameter maxLength: Max length of the string
      */
-    static var MaxLength = 5
+    public init(maxValue: Int) {
+        self.maxValue = maxValue
+    }
     
     /**
-     Perform validation on team ID to ensure that the following critera are true:
-        1. The text does not contain anything except numerical characters
-        2. The text does not exceed 5 characters in length
+     Perform validation on the text field to ensure that the max length is ensured
      */
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Create regex object to determine if only contains numbers
@@ -40,7 +37,7 @@ class TeamIdTextFieldDelegate: NSObject, UITextFieldDelegate {
         // check if matches above regex
         if regex.firstMatch(in: string, options: [], range: range) != nil {
             // check if, when adding new string, the length is still within range
-            if textField.text!.count + string.count <= TeamIdTextFieldDelegate.MaxLength {
+            if textField.text!.count + string.count <= maxValue {
                 return true
             }
         }

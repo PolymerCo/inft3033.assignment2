@@ -16,7 +16,7 @@ class TeamsTableCellLeaderboard: UITableViewCell {
     /**
      Team ID of this cell
      */
-    public var teamId: String?
+    public var teamId: Int32?
     
     @IBAction func cellAction() {
         

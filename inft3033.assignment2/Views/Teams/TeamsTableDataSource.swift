@@ -43,7 +43,13 @@ class TeamsTableDataSource: NSObject, UITableViewDataSource {
      - Returns: The number of rows in a section
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        // If first section, i.e local teams section
+        if section == 0 {
+            return LocalTeam.getTeams()?.count ?? 0
+        }
+        
+        // Other section is the remote team leaderboards
+        return min(TeamsViewController.Instance?.PreloadedSortedApiScores?.count ?? 0, 100)
     }
     
     /**
@@ -53,22 +59,53 @@ class TeamsTableDataSource: NSObject, UITableViewDataSource {
      - Returns: The cell view
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // If first section, i.e local teams section
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamsTableCell
             
-            cell.setTeamName(to: "Team \(indexPath.row)")
-            cell.setTeamScore(to: indexPath.row)
-            cell.teamId = String(indexPath.row)
+            // Get team at index indexPath
+            let teams = LocalTeam.getTeams()
+            
+            if let teams = teams {
+                let team = teams[indexPath.row]
+                
+                cell.setTeamName(to: team.name!)
+                cell.teamId = team.teamId
+                
+                // try and get scores for the team
+                let score = LocalTeamScores.getScore(forTeamId: team.teamId)
+                
+                if let score = score {
+                    cell.setTeamScore(to: score.score)
+                } else {
+                    cell.setTeamScore(to: 0)
+                }
+            }
             
             return cell
         }
         
+        // Other section is the remote team leaderboards
         let cell = tableView.dequeueReusableCell(withIdentifier: "teamCellLeaderboard") as! TeamsTableCellLeaderboard
         
-        cell.setTeamPlace(to: indexPath.row + 1)
-        cell.setTeamName(to: "Team \(indexPath.row)")
-        cell.setTeamScore(to: indexPath.row)
-        cell.teamId = String(indexPath.row)
+        // get scores first to ensure that teams without scores are not loaded
+        if let preloadedScores = TeamsViewController.Instance?.PreloadedSortedApiScores {
+            let score = preloadedScores[indexPath.row]
+            
+            // get team linked with score
+            if let preloadedTeams = TeamsViewController.Instance?.PreloadedApiTeams {
+                for team in preloadedTeams {
+                    if team.id == score.teamid {
+                        cell.setTeamName(to: team.name!)
+                        cell.setTeamScore(to: Int(score.score!)!)
+                        cell.teamId = Int32(team.id!)!
+                        cell.setTeamPlace(to: indexPath.row + 1)
+                        
+                        break
+                    }
+                }
+            }
+        }
         
         return cell
     }

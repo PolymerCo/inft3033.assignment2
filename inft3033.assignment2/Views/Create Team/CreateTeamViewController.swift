@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class CreateTeamViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet var teamImage: UIImageView!
@@ -23,6 +24,27 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
     var teamLocationDelegate: TextFieldDelegate
     var imagePicker = UIImagePickerController()
     var imageData: Data?
+    
+    /**
+     Value currently in the team ID field
+     */
+    var formTeamId: Int32? { get { Int32(self.teamIdField.text!) } }
+    
+    /**
+     Value currently in the team name field
+     */
+    var formTeamName: String { get { self.teamNameField.text! } }
+    
+    /**
+     Value currently in the team location field
+     */
+    var formTeamLocation: String { get { self.teamLocationField.text! } }
+    
+    /**
+     Value currently in the team image field
+     */
+    var formTeamImage: Data? { get { self.imageData } }
+    
     
     required init?(coder: NSCoder) {
         // Create delegates for use in the fields
@@ -76,55 +98,50 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
             progress.setProgress(0.6, animated: true)
             self.formView.isUserInteractionEnabled = false;
             
-            // Check if the team already exists on the server
-            GetTeamRequest.teamExists(withId: self.teamIdField.text!, callback: { result in
-                DispatchQueue.main.async {
-                    self.progress.setProgress(0.8, animated: true)
-                    switch result {
-                    case .success(let exists):
-                        if exists {
-                            self.showDialog(withTitle: "Error Saving Team", andMessage: "A team with the ID \(self.teamIdField.text!) already exists.")
-                        } else {
-                            // Now check if the team already exists in coredata
-                            
-                            do {
+            // Check if teamId can be converted into int
+            if let teamId = self.formTeamId {
+                // Check if the team already exists on the server
+                ApiTeamRequest.teamExists(withId: teamId, callback: { result in
+                    DispatchQueue.main.async {
+                        self.progress.setProgress(0.8, animated: true)
+                        
+                        switch result {
+                        case .success(let exists):
+                            // If team exists, show error to user
+                            if exists {
+                                self.showDialog(withTitle: "Error Saving Team", andMessage: "A team with the ID \(self.teamIdField.text!) already exists on the leaderboards")
+                            } else {
                                 self.progress.setProgress(0.9, animated: true)
-                                let teams = try DataUtils.fetchObject(for: "Team")
-                                let teamId = Int32(self.teamIdField.text!)
-                                var hasMatch = false
                                 
-                                for team in teams {
-                                    if (team.value(forKeyPath: "teamId") as? Int32 == teamId) {
-                                        hasMatch = true
-                                        break
-                                    }
-                                }
-                                
-                                self.progress.setProgress(1, animated: true)
-                                
-                                if hasMatch {
-                                    self.showDialog(withTitle: "Error Saving Team", andMessage: "A team with the ID \(self.teamIdField.text!) already exists.")
+                                // Now check if the team already exists in coredata
+                                if LocalTeam.teamExists(withId: teamId) {
+                                    self.showDialog(withTitle: "Error Saving Team", andMessage: "You have already created a team with ID \(self.teamIdField.text!)")
                                 } else {
+                                    // Checks complete, now store the team data
                                     self.storeTeamData()
-                                    self.dismiss(animated: true)
+                                    self.closeView()
                                 }
-                            } catch {
-                                self.showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again later.")
                             }
+                            
+                            self.progress.progress = 0
+                            self.progress.isHidden = true
+                            self.formView.isUserInteractionEnabled = true;
+                        case .failure(let error):
+                            self.showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again later\n\(error)")
+                            
+                            self.progress.progress = 0
+                            self.progress.isHidden = true
+                            self.formView.isUserInteractionEnabled = true;
                         }
-                        
-                        self.progress.progress = 0
-                        self.progress.isHidden = true
-                        self.formView.isUserInteractionEnabled = true;
-                    case .failure(let error):
-                        self.showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again later.\n\(error)")
-                        
-                        self.progress.progress = 0
-                        self.progress.isHidden = true
-                        self.formView.isUserInteractionEnabled = true;
                     }
-                }
-            })
+                })
+            } else {
+                self.showDialog(withTitle: "Invalid Input", andMessage: "The Team ID entered is invalid")
+                
+                self.progress.progress = 0
+                self.progress.isHidden = true
+                self.formView.isUserInteractionEnabled = true;
+            }
         } else {
             showInvalidInputAlert(text: reason)
         }
@@ -134,7 +151,7 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
      On cancel event that should fire when the cancel button is clicked
      */
     @IBAction func onCancel() {
-        dismiss(animated: true)
+        self.closeView()
     }
     
     /**
@@ -156,16 +173,19 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
      - Parameter picker: UI image picker controller
      - Parameter didFinishPickingMediaWithInfo: Info that was retrieved from picking the image
      */
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         // Get the image data and set as the team image
         let image = info["UIImagePickerControllerOriginalImage"] as? UIImage
         teamImage.image = image
         
         // Set the image data as PNG rep for use in CoreData
-        imageData = UIImagePNGRepresentation(image!)
+        imageData = image!.pngData()
         
         // Dismiss
-        dismiss(animated: true)
+        self.closeView()
     }
     
     /**
@@ -174,7 +194,7 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
      */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Simply dismiss the image picker
-        dismiss(animated: true)
+        self.closeView()
     }
     
     /**
@@ -182,43 +202,54 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
      - Returns: True if the inputs are valid, False if they are not and a reason.
      */
     private func validateInputs() -> (Bool, String) {
-        // check if team ID is valid length
-        if teamIdField.text!.count != TeamIdTextFieldDelegate.MaxLength {
-            return (false, "The Team ID needs to be 5 numbers in length")
-        }
         
-        // Test to see if the team ID can be converted to an int
-        guard Int32(teamIdField.text!) != nil else {
+        // Check to see if formTeamId is nil
+        if let formTeamId = formTeamId {
+            // check if team ID is valid length
+            if formTeamId > TeamIdTextFieldDelegate.MaxValue || formTeamId < TeamIdTextFieldDelegate.MinValue {
+                return (false, "The Team ID needs to be 5 numbers in length")
+            }
+        } else {
             return (false, "The Team ID entered is invalid")
         }
         
         // check if team name entered
-        if teamNameField.text?.count == 0 {
+        if formTeamName.trimmingCharacters(in: .whitespaces).isEmpty {
             return (false, "Team name required")
         }
         
         // check if team location entered
-        if teamLocationField.text?.count == 0 {
+        if formTeamLocation.trimmingCharacters(in: .whitespaces).isEmpty {
             return (false, "Team location required")
         }
         
         return (true, "")
     }
     
+    /**
+     Store the team data within CoreData
+     */
     private func storeTeamData() {
-        let entity = DataUtils.newObject(for: "Team")
+        let entity = Team(context: DataUtils.getManagedObject())
         
-        entity.setValue(teamNameField.text, forKey: "name")
-        entity.setValue(Int32(teamIdField.text!), forKey: "teamId")
-        entity.setValue(teamLocationField.text, forKey: "location")
-        entity.setValue(imageData, forKey: "image")
-        entity.setValue(Date(), forKey: "created")
+        entity.teamId = formTeamId!
+        entity.name = formTeamName
+        entity.location = formTeamLocation
+        entity.image = formTeamImage
         
         do {
             try DataUtils.getManagedObject().save()
         } catch let error as NSError {
             showDialog(withTitle: "Error Saving Team", andMessage: "Your team could not be saved. Please try again.\n\(error)")
         }
+    }
+    
+    /**
+     Method called during a segue prepare stage
+     */
+    func closeView() {
+        self.dismiss(animated: true)
+        TeamsViewController.Instance?.reload()
     }
     
     /**
@@ -242,4 +273,9 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
         
         present(alertController, animated: true)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }

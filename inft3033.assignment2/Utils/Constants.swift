@@ -21,5 +21,5 @@ class Constants {
     /**
      Placeholder to use when no points have been marked
      */
-    public static var NoPointsPlaceholder = "No Points"
+    public static var NoPointsPlaceholder = "Zero"
 }

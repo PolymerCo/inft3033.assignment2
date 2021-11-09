@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,18 @@
 		A7CD64D2272975450088DDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7CD64D1272975450088DDE2 /* Assets.xcassets */; };
 		A7CD64D5272975450088DDE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7CD64D3272975450088DDE2 /* LaunchScreen.storyboard */; };
 		BC08AE3A2737CD4A0041B068 /* DataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE392737CD4A0041B068 /* DataUtils.swift */; };
-		BC08AE3D2737E2410041B068 /* GetTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE3C2737E2410041B068 /* GetTeam.swift */; };
+		BC08AE3D2737E2410041B068 /* ApiTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE3C2737E2410041B068 /* ApiTeam.swift */; };
+		BC08AE3F273A200F0041B068 /* LocalTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE3E273A200F0041B068 /* LocalTeam.swift */; };
+		BC08AE43273A394C0041B068 /* LocalTeamScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE42273A394C0041B068 /* LocalTeamScore.swift */; };
+		BC08AE46273A3F6F0041B068 /* LocalTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE45273A3F6F0041B068 /* LocalTeamViewController.swift */; };
+		BC08AE48273A4A1C0041B068 /* ApiScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE47273A4A1C0041B068 /* ApiScore.swift */; };
+		BC08AE86273A4E270041B068 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC08AE85273A4E270041B068 /* IQKeyboardManagerSwift */; };
+		BC08AE89273A73720041B068 /* LeaderboardTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE88273A73720041B068 /* LeaderboardTeamViewController.swift */; };
+		BC08AE8D273A87150041B068 /* ScoreEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE8C273A87150041B068 /* ScoreEditViewController.swift */; };
+		BC08AE8F273A872A0041B068 /* ScoreEditTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE8E273A872A0041B068 /* ScoreEditTableCell.swift */; };
+		BC08AE91273A87440041B068 /* ScoreEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE90273A87440041B068 /* ScoreEditTableDataSource.swift */; };
+		BC08AE93273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE92273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift */; };
+		BC08AE95273A93080041B068 /* ScoreEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE94273A93080041B068 /* ScoreEdit.swift */; };
 		BC82D551273649F700A416C6 /* upload_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BC82D550273649F700A416C6 /* upload_icon.png */; };
 		BC82D55527364A9900A416C6 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC82D55427364A9900A416C6 /* CreateTeamViewController.swift */; };
 		BC82D55827364CE300A416C6 /* TeamModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC82D55627364CE300A416C6 /* TeamModel.xcdatamodeld */; };
@@ -37,7 +48,17 @@
 		A7CD64D4272975450088DDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7CD64D6272975450088DDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC08AE392737CD4A0041B068 /* DataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtils.swift; sourceTree = "<group>"; };
-		BC08AE3C2737E2410041B068 /* GetTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTeam.swift; sourceTree = "<group>"; };
+		BC08AE3C2737E2410041B068 /* ApiTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTeam.swift; sourceTree = "<group>"; };
+		BC08AE3E273A200F0041B068 /* LocalTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTeam.swift; sourceTree = "<group>"; };
+		BC08AE42273A394C0041B068 /* LocalTeamScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTeamScore.swift; sourceTree = "<group>"; };
+		BC08AE45273A3F6F0041B068 /* LocalTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTeamViewController.swift; sourceTree = "<group>"; };
+		BC08AE47273A4A1C0041B068 /* ApiScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiScore.swift; sourceTree = "<group>"; };
+		BC08AE88273A73720041B068 /* LeaderboardTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTeamViewController.swift; sourceTree = "<group>"; };
+		BC08AE8C273A87150041B068 /* ScoreEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditViewController.swift; sourceTree = "<group>"; };
+		BC08AE8E273A872A0041B068 /* ScoreEditTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditTableCell.swift; sourceTree = "<group>"; };
+		BC08AE90273A87440041B068 /* ScoreEditTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditTableDataSource.swift; sourceTree = "<group>"; };
+		BC08AE92273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldNumericTextFieldDelegate.swift; sourceTree = "<group>"; };
+		BC08AE94273A93080041B068 /* ScoreEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEdit.swift; sourceTree = "<group>"; };
 		BC82D550273649F700A416C6 /* upload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload_icon.png; sourceTree = "<group>"; };
 		BC82D55427364A9900A416C6 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		BC82D55727364CE300A416C6 /* TeamModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamModel.xcdatamodel; sourceTree = "<group>"; };
@@ -57,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC08AE86273A4E270041B068 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,26 +132,59 @@
 		BC08AE3B2737E2000041B068 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				BC08AE3C2737E2410041B068 /* GetTeam.swift */,
+				BC08AE3C2737E2410041B068 /* ApiTeam.swift */,
+				BC08AE3E273A200F0041B068 /* LocalTeam.swift */,
+				BC08AE42273A394C0041B068 /* LocalTeamScore.swift */,
+				BC08AE47273A4A1C0041B068 /* ApiScore.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		BC08AE44273A3F640041B068 /* Local Team View */ = {
+			isa = PBXGroup;
+			children = (
+				BC08AE45273A3F6F0041B068 /* LocalTeamViewController.swift */,
+			);
+			path = "Local Team View";
+			sourceTree = "<group>";
+		};
+		BC08AE87273A73640041B068 /* Leaderboard Team View */ = {
+			isa = PBXGroup;
+			children = (
+				BC08AE88273A73720041B068 /* LeaderboardTeamViewController.swift */,
+			);
+			path = "Leaderboard Team View";
+			sourceTree = "<group>";
+		};
+		BC08AE8B273A87070041B068 /* Score Edit View */ = {
+			isa = PBXGroup;
+			children = (
+				BC08AE8C273A87150041B068 /* ScoreEditViewController.swift */,
+				BC08AE8E273A872A0041B068 /* ScoreEditTableCell.swift */,
+				BC08AE90273A87440041B068 /* ScoreEditTableDataSource.swift */,
+				BC08AE94273A93080041B068 /* ScoreEdit.swift */,
+			);
+			path = "Score Edit View";
 			sourceTree = "<group>";
 		};
 		BC82D55227364A7700A416C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BC08AE8B273A87070041B068 /* Score Edit View */,
+				BC08AE87273A73640041B068 /* Leaderboard Team View */,
+				BC08AE44273A3F640041B068 /* Local Team View */,
 				BC82D55E27366D2B00A416C6 /* Teams */,
-				BC82D55327364A8600A416C6 /* CreateTeam */,
+				BC82D55327364A8600A416C6 /* Create Team */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		BC82D55327364A8600A416C6 /* CreateTeam */ = {
+		BC82D55327364A8600A416C6 /* Create Team */ = {
 			isa = PBXGroup;
 			children = (
 				BC82D55427364A9900A416C6 /* CreateTeamViewController.swift */,
 			);
-			path = CreateTeam;
+			path = "Create Team";
 			sourceTree = "<group>";
 		};
 		BC82D55927364E3100A416C6 /* Components */ = {
@@ -137,6 +192,7 @@
 			children = (
 				BC82D55A27364E3F00A416C6 /* TeamIdTextFieldDelegate.swift */,
 				BC82D55C27365A8700A416C6 /* TextFieldDelegate.swift */,
+				BC08AE92273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -178,6 +234,9 @@
 			dependencies = (
 			);
 			name = inft3033.assignment2;
+			packageProductDependencies = (
+				BC08AE85273A4E270041B068 /* IQKeyboardManagerSwift */,
+			);
 			productName = inft3033.assignment2;
 			productReference = A7CD64C4272975450088DDE2 /* inft3033.assignment2.app */;
 			productType = "com.apple.product-type.application";
@@ -189,11 +248,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Oliver Mitchell";
 				TargetAttributes = {
 					A7CD64C3272975450088DDE2 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1250;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -207,6 +267,9 @@
 				Base,
 			);
 			mainGroup = A7CD64BB272975450088DDE2;
+			packageReferences = (
+				BC08AE84273A4E270041B068 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = A7CD64C5272975450088DDE2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -238,18 +301,28 @@
 			files = (
 				BC82D55827364CE300A416C6 /* TeamModel.xcdatamodeld in Sources */,
 				BC82D56B27367EDD00A416C6 /* StringUtils.swift in Sources */,
+				BC08AE91273A87440041B068 /* ScoreEditTableDataSource.swift in Sources */,
 				BC82D56427366DA900A416C6 /* TeamsTableCell.swift in Sources */,
+				BC08AE46273A3F6F0041B068 /* LocalTeamViewController.swift in Sources */,
+				BC08AE3F273A200F0041B068 /* LocalTeam.swift in Sources */,
 				A7CD64CA272975450088DDE2 /* ViewController.swift in Sources */,
 				BC82D5682736763800A416C6 /* TeamsTableCellLeaderboard.swift in Sources */,
 				BC82D55D27365A8800A416C6 /* TextFieldDelegate.swift in Sources */,
 				BC08AE3A2737CD4A0041B068 /* DataUtils.swift in Sources */,
-				BC08AE3D2737E2410041B068 /* GetTeam.swift in Sources */,
+				BC08AE48273A4A1C0041B068 /* ApiScore.swift in Sources */,
+				BC08AE3D2737E2410041B068 /* ApiTeam.swift in Sources */,
+				BC08AE8D273A87150041B068 /* ScoreEditViewController.swift in Sources */,
 				BC82D55B27364E3F00A416C6 /* TeamIdTextFieldDelegate.swift in Sources */,
 				A7CD64C8272975450088DDE2 /* AppDelegate.swift in Sources */,
 				BC82D56027366D3B00A416C6 /* TeamsViewController.swift in Sources */,
+				BC08AE89273A73720041B068 /* LeaderboardTeamViewController.swift in Sources */,
 				BC82D56627366DB500A416C6 /* TeamsTableDataSource.swift in Sources */,
+				BC08AE43273A394C0041B068 /* LocalTeamScore.swift in Sources */,
 				BC82D55527364A9900A416C6 /* CreateTeamViewController.swift in Sources */,
+				BC08AE95273A93080041B068 /* ScoreEdit.swift in Sources */,
+				BC08AE8F273A872A0041B068 /* ScoreEditTableCell.swift in Sources */,
 				BC82D56D273684D900A416C6 /* Constants.swift in Sources */,
+				BC08AE93273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +362,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -296,8 +370,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -323,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -346,6 +422,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -353,8 +430,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -374,10 +453,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -389,10 +469,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GHPE2W7RHB;
 				INFOPLIST_FILE = inft3033.assignment2/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "unisa.inft3033-assignment2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -404,10 +487,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GHPE2W7RHB;
 				INFOPLIST_FILE = inft3033.assignment2/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "unisa.inft3033-assignment2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -434,6 +520,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BC08AE84273A4E270041B068 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BC08AE85273A4E270041B068 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC08AE84273A4E270041B068 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		BC82D55627364CE300A416C6 /* TeamModel.xcdatamodeld */ = {

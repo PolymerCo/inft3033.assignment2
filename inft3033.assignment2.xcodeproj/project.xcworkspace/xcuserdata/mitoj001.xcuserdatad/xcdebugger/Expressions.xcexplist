@@ -3,21 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #1 in CreateTeamViewController.onSubmit():CreateTeamViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "team.value(forKeyPath: &quot;teamId&quot;)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "static GetTeamRequest.getTeam(withId:callback:):GetTeam.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in static GetTeamRequest.getTeam(withId:callback:):GetTeam.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in static GetTeamRequest.teamExists(withId:callback:):GetTeam.swift">
       </ContextState>
       <ContextState
          contextName = "TeamIdTextFieldDelegate.textField(_:shouldChangeCharactersIn:replacementString:):TeamIdTextFieldDelegate.swift">
@@ -28,7 +14,74 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "LeaderboardTeamViewController.viewDidLoad():LeaderboardTeamViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "TeamsViewController.SelectedTeamType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CreateTeamViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):CreateTeamViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in LeaderboardTeamViewController.viewDidLoad():LeaderboardTeamViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static LocalTeamScores.getScore(forTeamId:):LocalTeamScore.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in TeamsViewController.reload():TeamsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int32($0.score!)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in TeamsViewController.reload():TeamsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static ApiTeamRequest.uploadTeam(withId:withName:withLocation:callback:):ApiTeam.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "URL(string: &quot;\(Constants.apiUrl)action=updateteam&amp;id=\(id)&amp;name=\(name)&amp;location=\(location)&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static GetTeamRequest.teamExists(withId:callback:):GetTeam.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScoreEditTableCell.didChange():ScoreEditTableCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "toggle.isOn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static ApiScoreRequest.getScores(callback:):ApiScore.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScoreEditViewController.calculateTotalScores():ScoreEditViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in CreateTeamViewController.onSubmit():CreateTeamViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "team.value(forKeyPath: &quot;teamId&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static GetTeamRequest.getTeam(withId:callback:):GetTeam.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TeamsTableDataSource.tableView(_:cellForRowAt:):TeamsTableDataSource.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScoreEditViewController.save():ScoreEditViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

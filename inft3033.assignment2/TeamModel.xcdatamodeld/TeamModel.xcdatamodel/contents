@@ -8,9 +8,8 @@
         <attribute name="teamId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="TeamScore" representedClassName="TeamScore" syncable="YES" codeGenerationType="class">
-        <attribute name="autonomous" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="autonomous" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="deductions" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="driverControlled" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="endGame" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="location" optional="YES" attributeType="String"/>
@@ -19,6 +18,6 @@
     </entity>
     <elements>
         <element name="Team" positionX="-288" positionY="36" width="128" height="104"/>
-        <element name="TeamScore" positionX="-380" positionY="54" width="128" height="149"/>
+        <element name="TeamScore" positionX="-380" positionY="54" width="128" height="134"/>
     </elements>
 </model>

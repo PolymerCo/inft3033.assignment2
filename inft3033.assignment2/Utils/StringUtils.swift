@@ -24,7 +24,11 @@ class StringUtils {
     public static func placeString(of place: Int) -> String {
         let lastDigit = place % 10
         
-        if place <= 1 || lastDigit == 1 {
+        if place <= 0 {
+            return "-"
+        }
+        
+        if lastDigit == 1 {
             return "\(place)st"
         }
         
