@@ -39,6 +39,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in static ApiTeamRequest.uploadTeam(withId:withName:withLocation:callback:):ApiTeam.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&quot;\(data)&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in TeamsViewController.reload():TeamsViewController.swift">
       </ContextState>
       <ContextState
