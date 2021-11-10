@@ -174,8 +174,7 @@ class CreateTeamViewController: UIViewController, UINavigationControllerDelegate
      - Parameter didFinishPickingMediaWithInfo: Info that was retrieved from picking the image
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         // Get the image data and set as the team image
         let image = info["UIImagePickerControllerOriginalImage"] as? UIImage
@@ -275,7 +274,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     }
 }
 
-// Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
 	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }

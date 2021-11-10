@@ -53,6 +53,11 @@ struct ApiTeamModel: Codable {
  */
 class ApiTeamRequest {
     
+    /**
+     URL of the API
+     */
+    public static var apiUrl = "https://www.partiklezoo.com/freightfrenzy/?"
+    
     public static func uploadTeam(withId id: Int32, withName name: String, withLocation location: String, callback: @escaping (Result<Bool, Error>) -> Void) {
         // Check if already exists on API server
         ApiTeamRequest.teamExists(withId: id, callback: { (request) -> Void in
@@ -60,14 +65,16 @@ class ApiTeamRequest {
             case .success(let exists):
                 var url: URL
                 
+                // Encode all of the parameters so that they are suitable for a URL
                 let id: String = "\(id)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
                 let name: String = "\(name)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
                 let location: String = "\(location)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
                 
+                // If the user already exists, perform an update action, otherwise, perform a add action
                 if exists {
-                    url = URL(string: "\(Constants.apiUrl)action=addteam&id=\(id)&name=\(name)&location=\(location)")!
+                    url = URL(string: "\(ApiTeamRequest.apiUrl)action=updateteam&id=\(id)&name=\(name)&location=\(location)")!
                 } else {
-                    url = URL(string: "\(Constants.apiUrl)action=updateteam&id=\(id)&name=\(name)&location=\(location)")!
+                    url = URL(string: "\(ApiTeamRequest.apiUrl)action=addteam&id=\(id)&name=\(name)&location=\(location)")!
                 }
                 
                 // Create a new URL session
@@ -83,6 +90,7 @@ class ApiTeamRequest {
                     }
                 }
                 
+                // Start session
                 session.resume()
             case .failure(let error):
                 callback(.failure(error))
@@ -116,8 +124,9 @@ class ApiTeamRequest {
      - Parameter callback: The callback method to call when the request completed
      */
     public static func getTeam(withId id: Int32, callback: @escaping (Result<ApiTeamModel, Error>) -> Void) -> Void {
+        // Encode URL parameters and create URL object
         let id: String = "\(id)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-        let url = URL(string: "\(Constants.apiUrl)action=team&id=\(id)")!
+        let url = URL(string: "\(ApiTeamRequest.apiUrl)action=team&id=\(id)")!
         
         // Create a new URL session
         let session = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
@@ -145,7 +154,8 @@ class ApiTeamRequest {
      - Parameter callback: The callback method to call when the request completed
      */
     public static func getTeams(callback: @escaping (Result<[ApiTeamModel], Error>) -> Void) -> Void {
-        let url = URL(string: "\(Constants.apiUrl)action=teams")!
+        // Create URL object
+        let url = URL(string: "\(ApiTeamRequest.apiUrl)action=teams")!
         
         // Create a new URL session
         let session = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in

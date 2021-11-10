@@ -40,8 +40,10 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
             existingScore.endGame = Int32(scores.end)
             existingScore.location = locationString
         } else {
+            // Create a new TeamScore object
             let score = TeamScore(context: DataUtils.getManagedObject())
             
+            // Assign this object the values entered by the user
             score.teamId = team!
             score.created = Date()
             score.score = Int32(scores.total)
@@ -52,7 +54,10 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
         }
         
         do {
+            // Attempt to save the object within the managed context
             try DataUtils.getManagedObject().save()
+            
+            // Runt he viewDidLoad on the local team controller and close the view
             LocalTeamViewController.Instance?.viewDidLoad()
             dismiss(animated: true)
         } catch { }
@@ -69,6 +74,7 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
         var totalEnd: Int = 0;
         
         if let source = dataSource?.autonomousScores {
+            // Iterate over all scores and add their value if the score is set
             for score in source {
                 if score.scoreIsSet {
                     totalAuto += score.scoreValue
@@ -77,6 +83,7 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
         }
         
         if let source = dataSource?.driverControlledScores {
+            // Iterate over all scores and add their value if the score is set
             for score in source {
                 if score.scoreIsSet {
                     totalDriver += score.scoreValue
@@ -85,6 +92,7 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
         }
         
         if let source = dataSource?.endGameScores {
+            // Iterate over all scores and add their value if the score is set
             for score in source {
                 if score.scoreIsSet {
                     totalEnd += score.scoreValue
@@ -92,13 +100,15 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
             }
         }
         
+        // Tally up all totals to get the final total
         total = totalAuto + totalDriver + totalEnd
         return (total, totalAuto, totalDriver, totalEnd)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+        
+        // Create a new data soruce
         dataSource = ScoreEditTableDataSource()
         tableView.dataSource = dataSource
         

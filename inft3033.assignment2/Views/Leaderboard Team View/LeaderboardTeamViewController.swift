@@ -39,7 +39,7 @@ class LeaderboardTeamViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        activity.startAnimating()
+        activity.isHidden = false
         
         // Check if required data is available and correct
         if TeamsViewController.SelectedTeam != nil && TeamsViewController.SelectedTeamType != nil && TeamsViewController.SelectedTeamType == "teamCellLeaderboard" {
@@ -50,13 +50,17 @@ class LeaderboardTeamViewController: UIViewController {
                     case .success(let team):
                         self.apiTeam = team
                         
+                        // if the API team object has been set
                         if let apiTeam = self.apiTeam {
+                            // Send off another request to get details about the teams score
                             ApiScoreRequest.getScore(forTeamId: Int32(apiTeam.id!) ?? 0, callback: { (result) -> Void in
                                 DispatchQueue.main.async {
                                     switch result {
                                     case .success(let score):
+                                        // Set the score object based on the result
                                         self.apiScore = score
                                         
+                                        // If there is an API score, set the labels
                                         if self.apiScore != nil {
                                             self.updateLabels()
                                         } else {
@@ -103,6 +107,7 @@ class LeaderboardTeamViewController: UIViewController {
             teamDriverControlPointsLabel.text = StringUtils.pointsString(of: Int(apiScore.drivercontrolled!) ?? 0)
             teamEndGamePointsLabel.text = StringUtils.pointsString(of: Int(apiScore.endgame!) ?? 0)
         } else {
+            // Set default values if no score set
             teamTotalLabel.text = "N/A"
             teamAutonomousPointsLabel.text = "Not Recorded"
             teamDriverControlPointsLabel.text = "Not Recorded"
@@ -122,6 +127,7 @@ class LeaderboardTeamViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let result):
+                    // If API score is not available set placeholder
                     if self.apiScore == nil {
                         self.teamPositionLabel.text = "N/A"
                     } else {
@@ -134,8 +140,9 @@ class LeaderboardTeamViewController: UIViewController {
                     self.teamPositionTotalLabel.text = "Error"
                 }
                 
+                // Update the labels
                 self.updateLabels()
-                self.activity.stopAnimating()
+                self.activity.isHidden = true
             }
         })
     }

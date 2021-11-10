@@ -10,9 +10,18 @@ import Foundation
 import UIKit
 import CoreData
 
+/**
+ Represents the data soruce for a score edit table
+ */
 class ScoreEditTableDataSource: NSObject, UITableViewDataSource {
+    /**
+     The team score data soruce
+     */
     public var scoreData: TeamScore
     
+    /**
+     The titles of the sections in the table
+     */
     public let sectionTitles: [String] = [
         "Autonomous", "Driver-Controlled Period", "End Game"
     ]
@@ -82,13 +91,13 @@ class ScoreEditTableDataSource: NSObject, UITableViewDataSource {
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case 0: // autonomous score section
             return autonomousScores.count
-        case 1:
+        case 1: // driver controlled section
             return driverControlledScores.count
-        case 2:
+        case 2: // end game section
             return endGameScores.count
-        default:
+        default: // invalid
             return 0
         }
     }
@@ -100,13 +109,13 @@ class ScoreEditTableDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell") as! ScoreEditTableCell
         
         switch indexPath.section {
-        case 0:
+        case 0: // autonomous score section
             cell.scoreEdit = autonomousScores[indexPath.row]
-        case 1:
+        case 1: // driver controlled section
             cell.scoreEdit = driverControlledScores[indexPath.row]
-        case 2:
+        case 2: // end game section
             cell.scoreEdit = endGameScores[indexPath.row]
-        default:
+        default: // invalid
             break
         }
         

@@ -49,25 +49,31 @@ class LocalTeamViewController: UIViewController, UIImagePickerControllerDelegate
      Upload the team score to the server
      */
     @IBAction func uploadToServer() {
+        // Set the states of the activity controls
         activity.isHidden = false
         formView.isUserInteractionEnabled = false
         uploadButton.isEnabled = false
         
         if let localTeam = localTeam {
+            // Attempt to upload the team
             ApiTeamRequest.uploadTeam(withId: localTeam.teamId, withName: localTeam.name!, withLocation: localTeam.location!, callback: { (result) -> Void in
                 DispatchQueue.main.async {
                     switch (result) {
                     case .success(_):
+                        // If successful, check to see if the team has a score set
                         if let localTeamScore = self.localTeamScore {
+                            // Attempt to upload the score
                             ApiScoreRequest.uploadScore(forId: localTeamScore.teamId, autonomous: localTeamScore.autonomous, drivercontrolled: localTeamScore.driverControlled, endgame: localTeamScore.endGame, location: localTeamScore.location!, callback: { (result) -> Void in
                                 DispatchQueue.main.async {
                                     switch (result) {
                                     case .success(_):
+                                        // Show dialog box if successful
                                         self.showDialog(withTitle: "Team Uploaded", andMessage: "Your team scores have been uploaded.")
                                     case .failure(_):
                                         self.showDialog(withTitle: "Failure Uploading", andMessage: "There was a failure uploading the team.\n\nPlease try again later.")
                                     }
                                     
+                                    // Reset the states of the activity controls
                                     self.activity.isHidden = true
                                     self.formView.isUserInteractionEnabled = true
                                     self.uploadButton.isEnabled = true
@@ -87,10 +93,11 @@ class LocalTeamViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     override public func viewDidLoad() {
+        // Set singleton instance and clear the labels
         LocalTeamViewController.Instance = self
         clearPositionLabel()
         
-        activity.stopAnimating()
+        activity.isHidden = true
         
         // Check if required data is available and correct
         if TeamsViewController.SelectedTeam != nil && TeamsViewController.SelectedTeamType != nil && TeamsViewController.SelectedTeamType == "teamCell" {
@@ -159,9 +166,11 @@ class LocalTeamViewController: UIViewController, UIImagePickerControllerDelegate
             DispatchQueue.main.async {
                 switch result {
                 case .success(let result):
+                    // If team score is not set, use placeholder
                     if self.localTeamScore == nil {
                         self.teamPositionLabel.text = "N/A"
                     } else {
+                        // Check to see if overflowed on the leaderboard, if so, set to the max value
                         if result.position > result.total {
                             self.teamPositionLabel.text = "\(result.total)"
                         } else {

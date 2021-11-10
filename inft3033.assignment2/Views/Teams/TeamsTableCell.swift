@@ -30,6 +30,6 @@ class TeamsTableCell: UITableViewCell {
      - Parameter to: New score
      */
     public func setTeamScore(to score: Int32) {
-        teamScoreLabel?.text = score == 0 ? Constants.NoPointsPlaceholder : "\(String(score)) \(Constants.PointsUnit)"
+        teamScoreLabel?.text = score == 0 ? StringUtils.NoPointsPlaceholder : "\(String(score)) \(StringUtils.PointsUnit)"
     }
 }

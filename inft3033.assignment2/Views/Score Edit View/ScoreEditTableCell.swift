@@ -9,11 +9,21 @@
 import UIKit
 import CoreData
 
+/**
+ Represents a table cell within the score edit table
+ */
 class ScoreEditTableCell: UITableViewCell {
     @IBOutlet var label: UILabel!
     @IBOutlet var toggle: UISwitch!
     
+    /**
+    The data source to use for this object
+     */
     public var scoreDataSource: ScoreEditTableDataSource!
+    
+    /**
+     The score edit parameters for this cell
+     */
     public var scoreEdit: ScoreEdit!
     
     /**
@@ -23,6 +33,9 @@ class ScoreEditTableCell: UITableViewCell {
         scoreEdit.scoreIsSet = toggle.isOn
     }
 
+    /**
+     Sets the labels on the cell using the current state of this object
+     */
     public func setLabels() {
         label.text = "\(scoreEdit.scoreLabel) (+\(scoreEdit.scoreValue))"
         toggle.isOn = scoreEdit.scoreIsSet

@@ -69,6 +69,7 @@ class TeamsTableDataSource: NSObject, UITableViewDataSource {
             if let teams = teams {
                 let team = teams[indexPath.row]
                 
+                // Set the cell parameters
                 cell.setTeamName(to: team.name!)
                 cell.teamId = team.teamId
                 

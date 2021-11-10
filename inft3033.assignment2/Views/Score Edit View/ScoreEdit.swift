@@ -6,6 +6,9 @@
 //  Copyright © 2021 Oliver Mitchell. All rights reserved.
 //
 
+/**
+ A class to represent the attributes of a score edit cell
+ */
 class ScoreEdit {
     
     /**

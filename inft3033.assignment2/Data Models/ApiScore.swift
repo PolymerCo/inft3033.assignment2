@@ -8,7 +8,9 @@
 
 import Foundation
 
-
+/**
+ Model to represent a score retrieved from the API server
+ */
 struct ApiScoreModel: Codable {
     /**
      ID of the score record
@@ -46,14 +48,16 @@ struct ApiScoreModel: Codable {
     public var location: String?
 }
 
-
+/**
+ Utility methods for recieving ApiScoreModels via the API server
+ */
 class ApiScoreRequest {
     
     /**
      Uploads a score to the API server
      */
     public static func uploadScore(forId id: Int32, autonomous: Int32, drivercontrolled: Int32, endgame: Int32, location: String, callback: @escaping (Result<Bool, Error>) -> Void) {
-        let url = URL(string: "\(Constants.apiUrl)action=addscore&teamid=\(id)&autonomous=\(autonomous)&drivercontrolled=\(drivercontrolled)&endgame=\(endgame)&location=\(location)")!
+        let url = URL(string: "\(ApiTeamRequest.apiUrl)action=addscore&teamid=\(id)&autonomous=\(autonomous)&drivercontrolled=\(drivercontrolled)&endgame=\(endgame)&location=\(location == "" ? "Unknown" : location)")!
         
         // Create a new URL session
         let session = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
@@ -102,10 +106,13 @@ class ApiScoreRequest {
                             // Iterate through sorted scores and find first position where score is greater
                             var position = 1
                             
+                            // Iterate over all the scores
                             for score in sortedScores {
                                 if Int32(score.score!)! > scoreValue {
+                                    // Increment position by 1 if score is lower than score in array
                                     position += 1
                                 } else {
+                                    // Have found the position
                                     break
                                 }
                             }
@@ -116,6 +123,7 @@ class ApiScoreRequest {
                         }
                     })
                 } else {
+                    // Callback with default values
                     callback(.success((1, 1)))
                 }
             case .failure(let error):
@@ -135,7 +143,6 @@ class ApiScoreRequest {
             // If get request was success
             case .success(let scores):
                 // Iterate through scores and get team with ID
-            
                 let filteredScores = scores.filter { score in
                     return Int32(score.teamid!) == id
                 }
@@ -158,7 +165,7 @@ class ApiScoreRequest {
      - Parameter callback: The callback method to call when the request completed
      */
     public static func getScores(callback: @escaping (Result<[ApiScoreModel], Error>) -> Void) -> Void {
-        let url = URL(string: "\(Constants.apiUrl)")!
+        let url = URL(string: "\(ApiTeamRequest.apiUrl)")!
         
         // Create a new URL session
         let session = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
