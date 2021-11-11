@@ -1,8 +1,8 @@
 //
-//  ScoreEditCell.swift
+//  ScoreEditNumericTableCell.swift
 //  inft3033.assignment2
 //
-//  Created by Mitchell, Oliver - mitoj001 on 9/11/21.
+//  Created by Mitchell, Oliver - mitoj001 on 11/11/21.
 //  Copyright © 2021 Oliver Mitchell. All rights reserved.
 //
 
@@ -11,9 +11,10 @@ import UIKit
 /**
  Represents a table cell within the score edit table
  */
-class ScoreEditTableCell: UITableViewCell {
+class ScoreEditTableNumericCell: UITableViewCell {
     @IBOutlet var label: UILabel!
-    @IBOutlet var toggle: UISwitch!
+    @IBOutlet var stepper: UIStepper!
+    @IBOutlet var stepperLabel: UILabel!
     
     /**
     The data source to use for this object
@@ -23,13 +24,22 @@ class ScoreEditTableCell: UITableViewCell {
     /**
      The score edit parameters for this cell
      */
-    public var scoreEdit: ScoreEditToggle!
+    public var scoreEdit: ScoreEditNumeric!
     
     /**
      Method called when this cell changes
      */
     @IBAction func didChange() {
-        scoreEdit.isToggled = toggle.isOn
+        let value: Int = Int(stepper.value)
+        scoreEdit.counter = value
+        
+        if scoreEdit.counter > 0 {
+            stepperLabel.textColor = UIColor.link
+        } else {
+            stepperLabel.textColor = UIColor.label
+        }
+        
+        stepperLabel.text = "\(value)"
     }
 
     /**
@@ -37,6 +47,7 @@ class ScoreEditTableCell: UITableViewCell {
      */
     public func setLabels() {
         label.text = "\(scoreEdit.scoreLabel) (+\(scoreEdit.scoreValue))"
-        toggle.isOn = scoreEdit.isToggled
+        stepper.value = Double(scoreEdit.counter)
+        stepperLabel.text = "\(scoreEdit.counter)"
     }
 }

@@ -35,6 +35,9 @@
 		BC82D56627366DB500A416C6 /* TeamsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC82D56527366DB500A416C6 /* TeamsTableDataSource.swift */; };
 		BC82D5682736763800A416C6 /* TeamsTableCellLeaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC82D5672736763800A416C6 /* TeamsTableCellLeaderboard.swift */; };
 		BC82D56B27367EDD00A416C6 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC82D56A27367EDD00A416C6 /* StringUtils.swift */; };
+		BCA08B9E273D0C7E007EDCE8 /* ScoreEditToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA08B9D273D0C7E007EDCE8 /* ScoreEditToggle.swift */; };
+		BCA08BA0273D0C88007EDCE8 /* ScoreEditNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA08B9F273D0C88007EDCE8 /* ScoreEditNumeric.swift */; };
+		BCA08BA2273D109E007EDCE8 /* ScoreEditNumericTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA08BA1273D109E007EDCE8 /* ScoreEditNumericTableCell.swift */; };
 		BCBB889F2737A99F002C4C40 /* missing_image.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBB889E2737A99F002C4C40 /* missing_image.png */; };
 		BCCDFC67273BD8A60038F3A9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCDFC66273BD8A60038F3A9 /* splash.png */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,9 @@
 		BC82D56527366DB500A416C6 /* TeamsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableDataSource.swift; sourceTree = "<group>"; };
 		BC82D5672736763800A416C6 /* TeamsTableCellLeaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableCellLeaderboard.swift; sourceTree = "<group>"; };
 		BC82D56A27367EDD00A416C6 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		BCA08B9D273D0C7E007EDCE8 /* ScoreEditToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditToggle.swift; sourceTree = "<group>"; };
+		BCA08B9F273D0C88007EDCE8 /* ScoreEditNumeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditNumeric.swift; sourceTree = "<group>"; };
+		BCA08BA1273D109E007EDCE8 /* ScoreEditNumericTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditNumericTableCell.swift; sourceTree = "<group>"; };
 		BCBB889E2737A99F002C4C40 /* missing_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing_image.png; sourceTree = "<group>"; };
 		BCCDFC66273BD8A60038F3A9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,8 +167,11 @@
 			children = (
 				BC08AE8C273A87150041B068 /* ScoreEditViewController.swift */,
 				BC08AE8E273A872A0041B068 /* ScoreEditTableCell.swift */,
+				BCA08BA1273D109E007EDCE8 /* ScoreEditNumericTableCell.swift */,
 				BC08AE90273A87440041B068 /* ScoreEditTableDataSource.swift */,
 				BC08AE94273A93080041B068 /* ScoreEdit.swift */,
+				BCA08B9D273D0C7E007EDCE8 /* ScoreEditToggle.swift */,
+				BCA08B9F273D0C88007EDCE8 /* ScoreEditNumeric.swift */,
 			);
 			path = "Score Edit View";
 			sourceTree = "<group>";
@@ -300,11 +309,14 @@
 				BC08AE3F273A200F0041B068 /* LocalTeam.swift in Sources */,
 				A7CD64CA272975450088DDE2 /* ViewController.swift in Sources */,
 				BC82D5682736763800A416C6 /* TeamsTableCellLeaderboard.swift in Sources */,
+				BCA08BA0273D0C88007EDCE8 /* ScoreEditNumeric.swift in Sources */,
 				BC82D55D27365A8800A416C6 /* TextFieldDelegate.swift in Sources */,
 				BC08AE3A2737CD4A0041B068 /* DataUtils.swift in Sources */,
 				BC08AE48273A4A1C0041B068 /* ApiScore.swift in Sources */,
 				BC08AE3D2737E2410041B068 /* ApiTeam.swift in Sources */,
+				BCA08B9E273D0C7E007EDCE8 /* ScoreEditToggle.swift in Sources */,
 				BC08AE8D273A87150041B068 /* ScoreEditViewController.swift in Sources */,
+				BCA08BA2273D109E007EDCE8 /* ScoreEditNumericTableCell.swift in Sources */,
 				BC82D55B27364E3F00A416C6 /* TeamIdTextFieldDelegate.swift in Sources */,
 				A7CD64C8272975450088DDE2 /* AppDelegate.swift in Sources */,
 				BC82D56027366D3B00A416C6 /* TeamsViewController.swift in Sources */,
@@ -391,7 +403,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -445,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

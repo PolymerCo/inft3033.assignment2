@@ -688,6 +688,50 @@
                                     <outlet property="toggle" destination="8tT-vG-msx" id="CId-CN-Euv"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCellNumeric" rowHeight="50" id="beI-T8-hTy" userLabel="scoreNumericCell" customClass="ScoreEditTableNumericCell" customModule="inft3033_assignment2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="118.5" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="beI-T8-hTy" id="Qnr-CG-cuR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" translatesAutoresizingMaskIntoConstraints="NO" id="uLw-Q1-yH0">
+                                            <rect key="frame" x="20" y="15" width="205" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="205" id="oDL-CV-Crw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9At-9L-xSV">
+                                            <rect key="frame" x="240" y="14.5" width="11" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="BgJ-HR-3sy">
+                                            <rect key="frame" x="261" y="9" width="94" height="32"/>
+                                            <connections>
+                                                <action selector="didChange" destination="beI-T8-hTy" eventType="valueChanged" id="EAF-Fx-gEa"/>
+                                            </connections>
+                                        </stepper>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="BgJ-HR-3sy" firstAttribute="centerY" secondItem="Qnr-CG-cuR" secondAttribute="centerY" id="4eS-dj-nUY"/>
+                                        <constraint firstItem="9At-9L-xSV" firstAttribute="trailing" secondItem="BgJ-HR-3sy" secondAttribute="leading" constant="-10" id="GSW-5K-PFv"/>
+                                        <constraint firstItem="uLw-Q1-yH0" firstAttribute="leading" secondItem="Qnr-CG-cuR" secondAttribute="leading" constant="20" id="Nv4-wl-PKu"/>
+                                        <constraint firstItem="BgJ-HR-3sy" firstAttribute="trailing" secondItem="Qnr-CG-cuR" secondAttribute="trailing" constant="-20" id="dzn-NK-gr8"/>
+                                        <constraint firstItem="BgJ-HR-3sy" firstAttribute="centerY" secondItem="9At-9L-xSV" secondAttribute="centerY" id="oFd-bi-OVc"/>
+                                        <constraint firstItem="uLw-Q1-yH0" firstAttribute="centerY" secondItem="Qnr-CG-cuR" secondAttribute="centerY" id="ttK-eV-BF8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="uLw-Q1-yH0" id="ynZ-BU-iVj"/>
+                                    <outlet property="stepper" destination="BgJ-HR-3sy" id="TAc-Ii-6s2"/>
+                                    <outlet property="stepperLabel" destination="9At-9L-xSV" id="p8g-D3-c8j"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="zZL-by-SoA" id="10v-xK-NZm"/>

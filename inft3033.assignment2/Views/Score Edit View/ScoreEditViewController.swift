@@ -76,27 +76,21 @@ class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate 
         if let source = dataSource?.autonomousScores {
             // Iterate over all scores and add their value if the score is set
             for score in source {
-                if score.scoreIsSet {
-                    totalAuto += score.scoreValue
-                }
+                totalAuto += score.getCalculatedScore()
             }
         }
         
         if let source = dataSource?.driverControlledScores {
             // Iterate over all scores and add their value if the score is set
             for score in source {
-                if score.scoreIsSet {
-                    totalDriver += score.scoreValue
-                }
+                totalDriver += score.getCalculatedScore()
             }
         }
         
         if let source = dataSource?.endGameScores {
             // Iterate over all scores and add their value if the score is set
             for score in source {
-                if score.scoreIsSet {
-                    totalEnd += score.scoreValue
-                }
+                totalEnd += score.getCalculatedScore()
             }
         }
         

@@ -9,28 +9,25 @@
 /**
  A class to represent the attributes of a score edit cell
  */
-class ScoreEdit {
+protocol ScoreEdit {
     
     /**
      Init class
      */
-    init(scoreLabel: String, scoreValue: Int) {
-        self.scoreLabel = scoreLabel
-        self.scoreValue = scoreValue
-    }
+    init(scoreLabel: String, scoreValue: Int);
+    
+    /**
+     Gets the score
+     */
+    func getCalculatedScore() -> Int;
     
     /**
      Score label for the display
      */
-    public var scoreLabel: String
+    var scoreLabel: String { get set }
     
     /**
-     Numeric value for the score
+     Value of the score
      */
-    public var scoreValue: Int
-    
-    /**
-     If the score should be set when calculating
-     */
-    public var scoreIsSet: Bool = false
+    var scoreValue: Int { get set }
 }

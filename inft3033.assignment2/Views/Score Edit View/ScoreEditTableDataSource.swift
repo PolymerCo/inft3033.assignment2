@@ -30,38 +30,38 @@ class ScoreEditTableDataSource: NSObject, UITableViewDataSource {
      Definitions for the scores in the autonomous category
      */
     public let autonomousScores: [ScoreEdit] = [
-        ScoreEdit(scoreLabel: "Delivered Duck via Carousel", scoreValue: 10),
-        ScoreEdit(scoreLabel: "Parked In Alliance Storage Unit", scoreValue: 3),
-        ScoreEdit(scoreLabel: "Parked Completely In Alliance Storage Unit", scoreValue: 6),
-        ScoreEdit(scoreLabel: "Parked In Warehouse", scoreValue: 5),
-        ScoreEdit(scoreLabel: "Parked Completely In Warehouse", scoreValue: 10),
-        ScoreEdit(scoreLabel: "Freight Completely In Alliance Storage Unit", scoreValue: 2),
-        ScoreEdit(scoreLabel: "Freight Completely On Alliance Shipping Hub", scoreValue: 6),
-        ScoreEdit(scoreLabel: "Duck used to detect Shipping Hub Level", scoreValue: 10),
-        ScoreEdit(scoreLabel: "Team Scoring Element used to detect Shipping Hub Level", scoreValue: 20),
+        ScoreEditToggle(scoreLabel: "Delivered Duck via Carousel", scoreValue: 10),
+        ScoreEditToggle(scoreLabel: "Parked In Alliance Storage Unit", scoreValue: 3),
+        ScoreEditToggle(scoreLabel: "Parked Completely In Alliance Storage Unit", scoreValue: 6),
+        ScoreEditToggle(scoreLabel: "Parked In Warehouse", scoreValue: 5),
+        ScoreEditToggle(scoreLabel: "Parked Completely In Warehouse", scoreValue: 10),
+        ScoreEditNumeric(scoreLabel: "Freight Completely In Alliance Storage Unit", scoreValue: 2),
+        ScoreEditNumeric(scoreLabel: "Freight Completely On Alliance Shipping Hub", scoreValue: 6),
+        ScoreEditToggle(scoreLabel: "Duck used to detect Shipping Hub Level", scoreValue: 10),
+        ScoreEditToggle(scoreLabel: "Team Scoring Element used to detect Shipping Hub Level", scoreValue: 20),
     ]
     
     /**
      Definitions for the scores in the driver controlled category
      */
     public let driverControlledScores: [ScoreEdit] = [
-        ScoreEdit(scoreLabel: "Freight Completely In Alliance Storage Unit", scoreValue: 1),
-        ScoreEdit(scoreLabel: "Freight in Alliance Shipping Hub (Level 1)", scoreValue: 2),
-        ScoreEdit(scoreLabel: "Freight in Alliance Shipping Hub (Level 2)", scoreValue: 4),
-        ScoreEdit(scoreLabel: "Freight in Alliance Shipping Hub (Level 3)", scoreValue: 6),
-        ScoreEdit(scoreLabel: "Freight Completely On Shared Shipping Hub", scoreValue: 4),
+        ScoreEditNumeric(scoreLabel: "Freight Completely In Storage Unit", scoreValue: 1),
+        ScoreEditNumeric(scoreLabel: "Freight in Alliance Shipping Hub (L1)", scoreValue: 2),
+        ScoreEditNumeric(scoreLabel: "Freight in Alliance Shipping Hub (L2)", scoreValue: 4),
+        ScoreEditNumeric(scoreLabel: "Freight in Alliance Shipping Hub (L3)", scoreValue: 6),
+        ScoreEditNumeric(scoreLabel: "Freight Completely On Shared Shipping Hub", scoreValue: 4),
     ]
     
     /**
      Definitions for the scores in the end game category
      */
     public let endGameScores: [ScoreEdit] = [
-        ScoreEdit(scoreLabel: "Delivered Duck or Team Shipping Element via Carousel", scoreValue: 6),
-        ScoreEdit(scoreLabel: "Alliance Shipping Hub Balanced", scoreValue: 10),
-        ScoreEdit(scoreLabel: "Shared Shipping Hub tipped toward Alliance", scoreValue: 20),
-        ScoreEdit(scoreLabel: "Parked partially in a Warehouse", scoreValue: 3),
-        ScoreEdit(scoreLabel: "Parked Completely in a Warehouse", scoreValue: 6),
-        ScoreEdit(scoreLabel: "Alliance Shipping Hub Capped", scoreValue: 15),
+        ScoreEditNumeric(scoreLabel: "Delivered Duck or Team Shipping Element via Carousel", scoreValue: 6),
+        ScoreEditToggle(scoreLabel: "Alliance Shipping Hub Balanced", scoreValue: 10),
+        ScoreEditToggle(scoreLabel: "Shared Shipping Hub tipped toward Alliance", scoreValue: 20),
+        ScoreEditToggle(scoreLabel: "Parked partially in a Warehouse", scoreValue: 3),
+        ScoreEditToggle(scoreLabel: "Parked Completely in a Warehouse", scoreValue: 6),
+        ScoreEditToggle(scoreLabel: "Alliance Shipping Hub Capped", scoreValue: 15),
     ]
     
     /**
@@ -106,21 +106,41 @@ class ScoreEditTableDataSource: NSObject, UITableViewDataSource {
      Update the table view with the cells needed for setting the score
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell") as! ScoreEditTableCell
+        let cell: UITableViewCell
+        var scoreEdit: ScoreEdit? = nil
         
         switch indexPath.section {
         case 0: // autonomous score section
-            cell.scoreEdit = autonomousScores[indexPath.row]
+            scoreEdit = autonomousScores[indexPath.row]
         case 1: // driver controlled section
-            cell.scoreEdit = driverControlledScores[indexPath.row]
+            scoreEdit = driverControlledScores[indexPath.row]
         case 2: // end game section
-            cell.scoreEdit = endGameScores[indexPath.row]
+            scoreEdit = endGameScores[indexPath.row]
         default: // invalid
             break
         }
         
-        cell.scoreDataSource = self
-        cell.setLabels()
+        if let scoreEdit = scoreEdit {
+            if scoreEdit is ScoreEditToggle {
+                let editCell: ScoreEditTableCell = tableView.dequeueReusableCell(withIdentifier: "scoreCell") as! ScoreEditTableCell
+                
+                editCell.scoreDataSource = self
+                editCell.scoreEdit = scoreEdit as? ScoreEditToggle
+                editCell.setLabels()
+                
+                cell = editCell
+            } else {
+                let editCell: ScoreEditTableNumericCell = tableView.dequeueReusableCell(withIdentifier: "scoreCellNumeric") as! ScoreEditTableNumericCell
+                
+                editCell.scoreDataSource = self
+                editCell.scoreEdit = scoreEdit as? ScoreEditNumeric
+                editCell.setLabels()
+                
+                cell = editCell
+            }
+        } else {
+            cell = UITableViewCell()
+        }
         
         return cell
     }
