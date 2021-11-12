@@ -9,22 +9,51 @@
 
 import UIKit
 
+/**
+ View controller to manage the local team view
+ */
 class LocalTeamViewController: UIViewController, UIImagePickerControllerDelegate {
+    // Local team viewer controller singleton
     public static var Instance: LocalTeamViewController?
     
+    // Activity view 
     @IBOutlet var activity: UIActivityIndicatorView!
+
+    // View of the main form
     @IBOutlet var formView: UIView!
+
+
+    // Button element to signal an upload
     @IBOutlet var uploadButton: UIBarButtonItem!
     
+    // Image for the team
     @IBOutlet var teamImage: UIImageView!
+    
+    // Label representing the team name
     @IBOutlet var teamNameLabel: UILabel!
+
+    // Label representing the team location
     @IBOutlet var teamLocationLabel: UILabel!
+
+    // Label representing the team ID
     @IBOutlet var teamIdLabel: UILabel!
+
+    // Label represeting the autonomous points collection
     @IBOutlet var teamAutonomousPointsLabel: UILabel!
+
+    // Label represeting the driver controlled points collection
     @IBOutlet var teamDriverControlPointsLabel: UILabel!
+
+    // Label represeting the end game points collection
     @IBOutlet var teamEndGamePointsLabel: UILabel!
+    
+    // Label represeting the points collection
     @IBOutlet var teamTotalLabel: UILabel!
+
+    // Team position label
     @IBOutlet var teamPositionLabel: UILabel!
+
+    // Team position total label
     @IBOutlet var teamPositionTotalLabel: UILabel!
     
     /**

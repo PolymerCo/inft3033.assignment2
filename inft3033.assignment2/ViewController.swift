@@ -9,8 +9,12 @@
 import UIKit
 import CoreData
 
+
+/**
+ View controller of the primary home page
+ */
 class ViewController: UIViewController {
-    
+
     static var modelContainer: NSPersistentContainer!
     
     override func viewDidLoad() {
