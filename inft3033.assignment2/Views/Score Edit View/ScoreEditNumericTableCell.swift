@@ -38,11 +38,7 @@ class ScoreEditTableNumericCell: UITableViewCell {
         let value: Int = Int(stepper.value)
         scoreEdit.counter = value
         
-        if scoreEdit.counter > 0 {
-            stepperLabel.textColor = UIColor.link
-        } else {
-            stepperLabel.textColor = UIColor.label
-        }
+        self.setStepperStyle()
         
         stepperLabel.text = "\(value)"
     }
@@ -54,5 +50,11 @@ class ScoreEditTableNumericCell: UITableViewCell {
         label.text = "\(scoreEdit.scoreLabel) (+\(scoreEdit.scoreValue))"
         stepper.value = Double(scoreEdit.counter)
         stepperLabel.text = "\(scoreEdit.counter)"
+        
+        self.setStepperStyle()
+    }
+    
+    private func setStepperStyle() {
+        stepperLabel.textColor = scoreEdit.counter > 0 ? UIColor.link : UIColor.label
     }
 }

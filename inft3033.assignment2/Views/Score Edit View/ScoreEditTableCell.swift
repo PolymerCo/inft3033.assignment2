@@ -16,7 +16,7 @@ class ScoreEditTableCell: UITableViewCell {
     @IBOutlet var label: UILabel!
 
     // Toggle input for the edit cell
-    @IBOutlet var toggle: UISwitch!
+    @IBOutlet var toggle: UISegmentedControl!
     
     /**
     The data source to use for this object
@@ -32,7 +32,7 @@ class ScoreEditTableCell: UITableViewCell {
      Method called when this cell changes
      */
     @IBAction func didChange() {
-        scoreEdit.isToggled = toggle.isOn
+        scoreEdit.isToggled = toggle.selectedSegmentIndex == 1
     }
 
     /**
@@ -40,6 +40,6 @@ class ScoreEditTableCell: UITableViewCell {
      */
     public func setLabels() {
         label.text = "\(scoreEdit.scoreLabel) (+\(scoreEdit.scoreValue))"
-        toggle.isOn = scoreEdit.isToggled
+        toggle.selectedSegmentIndex = scoreEdit.isToggled ? 1 : 0
     }
 }

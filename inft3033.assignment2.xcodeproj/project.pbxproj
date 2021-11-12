@@ -25,6 +25,7 @@
 		BC08AE91273A87440041B068 /* ScoreEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE90273A87440041B068 /* ScoreEditTableDataSource.swift */; };
 		BC08AE93273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE92273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift */; };
 		BC08AE95273A93080041B068 /* ScoreEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC08AE94273A93080041B068 /* ScoreEdit.swift */; };
+		BC5307A3273E7A5500D97F6D /* AboutPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5307A2273E7A5500D97F6D /* AboutPageViewController.swift */; };
 		BC82D551273649F700A416C6 /* upload_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BC82D550273649F700A416C6 /* upload_icon.png */; };
 		BC82D55527364A9900A416C6 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC82D55427364A9900A416C6 /* CreateTeamViewController.swift */; };
 		BC82D55827364CE300A416C6 /* TeamModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC82D55627364CE300A416C6 /* TeamModel.xcdatamodeld */; };
@@ -62,6 +63,7 @@
 		BC08AE90273A87440041B068 /* ScoreEditTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditTableDataSource.swift; sourceTree = "<group>"; };
 		BC08AE92273A88CC0041B068 /* TextFieldNumericTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldNumericTextFieldDelegate.swift; sourceTree = "<group>"; };
 		BC08AE94273A93080041B068 /* ScoreEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEdit.swift; sourceTree = "<group>"; };
+		BC5307A2273E7A5500D97F6D /* AboutPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPageViewController.swift; sourceTree = "<group>"; };
 		BC82D550273649F700A416C6 /* upload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload_icon.png; sourceTree = "<group>"; };
 		BC82D55427364A9900A416C6 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		BC82D55727364CE300A416C6 /* TeamModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamModel.xcdatamodel; sourceTree = "<group>"; };
@@ -176,9 +178,18 @@
 			path = "Score Edit View";
 			sourceTree = "<group>";
 		};
+		BC5307A1273E7A4B00D97F6D /* About */ = {
+			isa = PBXGroup;
+			children = (
+				BC5307A2273E7A5500D97F6D /* AboutPageViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		BC82D55227364A7700A416C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BC5307A1273E7A4B00D97F6D /* About */,
 				BC08AE8B273A87070041B068 /* Score Edit View */,
 				BC08AE87273A73640041B068 /* Leaderboard Team View */,
 				BC08AE44273A3F640041B068 /* Local Team View */,
@@ -308,6 +319,7 @@
 				BC08AE46273A3F6F0041B068 /* LocalTeamViewController.swift in Sources */,
 				BC08AE3F273A200F0041B068 /* LocalTeam.swift in Sources */,
 				A7CD64CA272975450088DDE2 /* ViewController.swift in Sources */,
+				BC5307A3273E7A5500D97F6D /* AboutPageViewController.swift in Sources */,
 				BC82D5682736763800A416C6 /* TeamsTableCellLeaderboard.swift in Sources */,
 				BCA08BA0273D0C88007EDCE8 /* ScoreEditNumeric.swift in Sources */,
 				BC82D55D27365A8800A416C6 /* TextFieldDelegate.swift in Sources */,

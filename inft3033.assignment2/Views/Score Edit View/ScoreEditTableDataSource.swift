@@ -38,7 +38,7 @@ class ScoreEditTableDataSource: NSObject, UITableViewDataSource {
         ScoreEditNumeric(scoreLabel: "Freight Completely In Alliance Storage Unit", scoreValue: 2),
         ScoreEditNumeric(scoreLabel: "Freight Completely On Alliance Shipping Hub", scoreValue: 6),
         ScoreEditToggle(scoreLabel: "Duck used to detect Shipping Hub Level", scoreValue: 10),
-        ScoreEditToggle(scoreLabel: "Team Scoring Element used to detect Shipping Hub Level", scoreValue: 20),
+        ScoreEditToggle(scoreLabel: "Team Scoring Element detected Shipping Hub Level", scoreValue: 20),
     ]
     
     /**
