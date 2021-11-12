@@ -12,7 +12,10 @@ import UIKit
  Represents a table cell within the score edit table
  */
 class ScoreEditTableCell: UITableViewCell {
+    // Label for the score edit cell
     @IBOutlet var label: UILabel!
+
+    // Toggle input for the edit cell
     @IBOutlet var toggle: UISwitch!
     
     /**

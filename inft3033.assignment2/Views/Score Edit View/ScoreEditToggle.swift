@@ -6,14 +6,22 @@
 //  Copyright © 2021 Oliver Mitchell. All rights reserved.
 //
 
-
+/**
+ Manages a score edit for toggleable values
+ */
 class ScoreEditToggle: ScoreEdit {
-    
+    /**
+     Label to display within the score field
+     */
     var scoreLabel: String
+    
+    /**
+     Value of the point
+     */
     var scoreValue: Int
     
     /**
-     Counter for adding the total score
+     If the toggle is currently on
      */
     var isToggled: Bool = false
     

@@ -12,8 +12,13 @@ import UIKit
  Represents a table cell within the score edit table
  */
 class ScoreEditTableNumericCell: UITableViewCell {
+    // Label to display on a numeric input cell
     @IBOutlet var label: UILabel!
+
+    // Stepper that is used to incremenent/decrement the value
     @IBOutlet var stepper: UIStepper!
+
+    // Label to display the current value of the stepper
     @IBOutlet var stepperLabel: UILabel!
     
     /**

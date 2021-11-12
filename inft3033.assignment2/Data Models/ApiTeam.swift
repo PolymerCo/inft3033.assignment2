@@ -58,6 +58,13 @@ class ApiTeamRequest {
      */
     public static var apiUrl = "https://www.partiklezoo.com/freightfrenzy/?"
     
+    /**
+     Uploads a team to the API server. Will override existing team details if the ID is already specified.
+     - Parameter withId: ID to upload
+     - Parameter withName: Name of the team
+     - Parameter withLocation: Location of the team
+     - Parameter callback: Callback method to call when the upload is complete
+     */
     public static func uploadTeam(withId id: Int32, withName name: String, withLocation location: String, callback: @escaping (Result<Bool, Error>) -> Void) {
         // Check if already exists on API server
         ApiTeamRequest.teamExists(withId: id, callback: { (request) -> Void in

@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
+/**
+ View controller to manage the score editing view
+ */
 class ScoreEditViewController: UITableViewController, CLLocationManagerDelegate {
     
     /**

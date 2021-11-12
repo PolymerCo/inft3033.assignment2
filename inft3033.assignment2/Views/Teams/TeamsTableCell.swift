@@ -8,8 +8,14 @@
 
 import UIKit
 
+/**
+ Represents a cell within the team table cell
+ */
 class TeamsTableCell: UITableViewCell {
+    // Team name label to display within the cell
     @IBOutlet var teamNameLabel: UILabel?
+
+    // Team score to display within the cell
     @IBOutlet var teamScoreLabel: UILabel?
     
     /**

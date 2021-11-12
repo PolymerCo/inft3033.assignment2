@@ -55,10 +55,7 @@ class LocalTeamScores {
         // Try and create team managed object
         do {
             scores = try DataUtils.fetchObject(for: "TeamScore") as? [TeamScore]
-        } catch {
-            print("Issue retrieving TeamScore managed object: \(error)")
-            return nil
-        }
+        } catch { return nil }
         
         return scores
     }

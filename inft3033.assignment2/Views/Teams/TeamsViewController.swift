@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Controller to manage the team view
+ */
 class TeamsViewController: UITableViewController {
     
     /**

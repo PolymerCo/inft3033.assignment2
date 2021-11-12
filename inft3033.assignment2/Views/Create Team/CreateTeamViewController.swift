@@ -9,19 +9,34 @@
 import UIKit
 import CoreData
 
-
+/**
+ View controller to manage the create team view
+ */
 class CreateTeamViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
+    // Team image UI element at the top of the page
     @IBOutlet var teamImage: UIImageView!
+
+    // Team ID field
     @IBOutlet var teamIdField: UITextField!
+
+    // Team name field
     @IBOutlet var teamNameField: UITextField!
+
+    // Team location field
     @IBOutlet var teamLocationField: UITextField!
+
+    // Form UI view that contains the controls
     @IBOutlet var formView: UIView!
+
+    // Form progress
     @IBOutlet var progress: UIProgressView!
     
+    // Delegates for the text fields
     var teamIdDelegate: TeamIdTextFieldDelegate
     var teamNameDelegate: TextFieldDelegate
     var teamLocationDelegate: TextFieldDelegate
+
+    // Image picker objects
     var imagePicker = UIImagePickerController()
     var imageData: Data?
     

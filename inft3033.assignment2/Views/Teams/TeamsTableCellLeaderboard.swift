@@ -8,19 +8,23 @@
 
 import UIKit
 
+/**
+ Represents a cell within the team leaderboard table
+ */
 class TeamsTableCellLeaderboard: UITableViewCell {
+    // Label to represent the place of the team within the leaderboard
     @IBOutlet var teamPlaceLabel: UILabel?
+
+    // Label to represent the name of the team
     @IBOutlet var teamNameLabel: UILabel?
+
+    // Label to represent the score of the team
     @IBOutlet var teamScoreLabel: UILabel?
     
     /**
      Team ID of this cell
      */
     public var teamId: Int32?
-    
-    @IBAction func cellAction() {
-        
-    }
     
     /**
      Sets the team place

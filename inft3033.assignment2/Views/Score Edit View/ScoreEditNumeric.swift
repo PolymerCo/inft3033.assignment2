@@ -6,10 +6,18 @@
 //  Copyright © 2021 Oliver Mitchell. All rights reserved.
 //
 
-
+/**
+ Manages a score edit for numerical values
+ */
 class ScoreEditNumeric: ScoreEdit {
-    
+    /**
+     Label to display on the score field
+     */
     var scoreLabel: String
+
+    /**
+     Value of a the point
+     */
     var scoreValue: Int
     
     /**

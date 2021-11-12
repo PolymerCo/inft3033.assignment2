@@ -9,16 +9,38 @@
 
 import UIKit
 
+/**
+ View controller that manages the view for showing a leaderboard team
+ */
 class LeaderboardTeamViewController: UIViewController {
+    // Team name label
     @IBOutlet var teamNameLabel: UILabel!
+
+    // Team location label
     @IBOutlet var teamLocationLabel: UILabel!
+
+    // Team ID label
     @IBOutlet var teamIdLabel: UILabel!
+
+    // Label to display the total autonomous points
     @IBOutlet var teamAutonomousPointsLabel: UILabel!
+
+    // Label to display the total driver control points
     @IBOutlet var teamDriverControlPointsLabel: UILabel!
+
+    // Label to display the total end game points
     @IBOutlet var teamEndGamePointsLabel: UILabel!
+
+    // Label to display the total points
     @IBOutlet var teamTotalLabel: UILabel!
+
+    // Team position overall label
     @IBOutlet var teamPositionLabel: UILabel!
+
+    // Team position total label
     @IBOutlet var teamPositionTotalLabel: UILabel!
+
+    // Activity indicator
     @IBOutlet var activity: UIActivityIndicatorView!
     
     /**

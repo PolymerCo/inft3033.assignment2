@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Data source to provide data to the team view
+ */
 class TeamsTableDataSource: NSObject, UITableViewDataSource {
     /**
      Titles to use in each of the sections
@@ -76,6 +79,7 @@ class TeamsTableDataSource: NSObject, UITableViewDataSource {
                 // try and get scores for the team
                 let score = LocalTeamScores.getScore(forTeamId: team.teamId)
                 
+                // If score is not set, set default to 0
                 if let score = score {
                     cell.setTeamScore(to: score.score)
                 } else {
